@@ -1,8 +1,9 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
+import cookiePaser from "cookie-parser"
 import authRoutes from "./routes/auth.js"
-//import usersRoutes from "./routes/users.js"
+import usersRoutes from "./routes/users.js"
 import hotelsRoutes from "./routes/hotels.js"
 //import roomsRoutes from "./routes/rooms.js"
 
@@ -30,9 +31,10 @@ mongoose.connection.on('connected', () => {
 //middlewares
 
 app.use(express.json())
+app.use(cookiePaser())
 
 app.use("/api/auth", authRoutes)
-//app.use("/api/users", usersRoutes)
+app.use("/api/users", usersRoutes)
 app.use("/api/hotels", hotelsRoutes)
 //app.use("/api/rooms", roomsRoutes)
 
